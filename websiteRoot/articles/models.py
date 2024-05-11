@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django.urls import reverse
 
 class Section(models.Model):
@@ -12,8 +11,8 @@ class Section(models.Model):
     img_height = models.IntegerField(default=100)
     img_width = models.IntegerField(default=100)
 
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
@@ -21,7 +20,7 @@ class Section(models.Model):
 class Article(models.Model):
 
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)
+    slug = models.SlugField(max_length=250, unique_for_date='created')
     description = models.TextField()
     requisites = models.TextField()
     image = models.ImageField(upload_to='articles/%Y/%m/%d', blank=True)
@@ -44,7 +43,7 @@ class Article(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:article_detail', args=[self.publish.year, self.publish.month, self.publish.day, self.slug])
+        return reverse('articles:article_detail', args=[self.created.year, self.created.month, self.created.day, self.slug])
 
 class SectionOrder(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE)
