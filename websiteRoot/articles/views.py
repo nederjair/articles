@@ -22,8 +22,9 @@ def article_list(request):
 def article_detail(request, year, month, day, article):
     article = get_object_or_404(Article, slug=article, created__year=year, created__month=month, created__day=day)
     sections = article.sections.all()
-    # List of active comments for this article
-
-    return render(request, 'articles/article/detail.html', {'article': article, 'sections': sections})
+    context = {'article': article,
+               'sections': sections,
+               }
+    return render(request, 'articles/article/detail.html', context)
 
 

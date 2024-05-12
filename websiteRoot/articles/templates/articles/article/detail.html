@@ -1,6 +1,13 @@
 {% extends "articles/base.html" %}
+{% load static %}
 
 {% block title %}{{ article.title }}{% endblock %}
+
+    {% block image %}
+    <figure>
+      <img src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/no_image.svg' %}{% endif %}" height="{{ article.img_height }}" width="{{ article.img_width }}" alt="main image"/>
+    </figure>
+    {% endblock %}
 
 {% block content %}
   <h1>{{ article.title }}</h1>

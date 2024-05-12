@@ -1,19 +1,19 @@
-{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
   <title>{% block title %}{% endblock %}</title>
-  {% tailwind_css %}
+  <link href="{% static "css/articles.css" %}" rel="stylesheet">
 </head>
 <body>
-  <div class="columns-3">
+  <header>
+    {% block image %}
+    {% endblock %}
+  </header>
+  <main>
     {% block content %}
     {% endblock %}
-  </div>
-  <div id="sidebar">
-    <h2>My articles</h2>
-    <p>This is my articles.</p>
+  </main>
 
-</div>
 </body>
 </html>
