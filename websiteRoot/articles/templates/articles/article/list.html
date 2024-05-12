@@ -3,6 +3,10 @@
 {% block title %}My articles{% endblock %}
 
 {% block content %}
+<div>
+</div>
+
+<div>
   <h1>My articles</h1>
   {% for article in articles %}
     <h2>
@@ -17,4 +21,8 @@
     {{ article.description|truncatewords:30|linebreaks }}
   {% endfor %}
   {% include "pagination.html" with page=page_obj %}
+</div>
+
+<div>
+</div>
 {% endblock %}
