@@ -4,20 +4,15 @@
 <head>
   <title>{% block title %}{% endblock %}</title>
   <link href="{% static "css/articles.css" %}" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
 </head>
 <body>
-  <div id="main_container">
-  <header>
-    {% block navbar %}
-    {% endblock %}
-    {% block image %}
-    {% endblock %}
-  </header>
-  <main>
+  <div id="content">
     {% block content %}
     {% endblock %}
-  </main>
+  </div>
+  <div id="sidebar">
+    <h2>My articles</h2>
+    <p>This is my articles.</p>
   </div>
 </body>
 </html>

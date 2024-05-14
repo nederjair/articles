@@ -4,7 +4,6 @@
 **lib64
 **db.sqlite3
 **__pycache__/
-**base_bk.html
 **theme/
 **media/
 pyvenv.cfg

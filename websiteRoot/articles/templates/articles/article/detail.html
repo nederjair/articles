@@ -2,6 +2,13 @@
 {% load static %}
 
 {% block title %}{{ article.title }}{% endblock %}
+    {% block navbar %}
+    <nav>
+      <ul>
+        <li><a href="{% url 'articles:article_list' %}">Back to tutorials</a></li>
+      </ul>
+    </nav>
+    {% endblock %}
 
     {% block image %}
     <figure>
