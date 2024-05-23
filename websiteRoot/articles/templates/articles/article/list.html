@@ -2,6 +2,10 @@
 {% load static %}
   
 {% block title %}Python RUDN{% endblock %}
+{% block banner %}
+  <img class="banner_img" src="{% static 'img/main_banner.jpg' %}" alt="main image"/>
+{% endblock banner %}
+
   {% block content %}
     <h1>Python Tutorials</h1>
       {% for article in articles %}
@@ -14,7 +18,7 @@
         <p class="date">
           updated {{ article.updated }} by Mendez
         </p>
-        {{ article.description|truncatewords:30|linebreaks }}
+        <p>{{ article.description|truncatewords:30|linebreaks }}</p>
       {% endfor %}
       {% include "pagination.html" with page=articles %}
       {% endblock content %}

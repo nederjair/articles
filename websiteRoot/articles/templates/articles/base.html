@@ -14,14 +14,11 @@
       <ul>
         <li class="logo"><a href="{% url 'articles:article_list' %}"><img id="logo" src="{% static 'img/programming.png' %}"/></a></li>
         <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
-        <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
-        <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
       </ul>
     </nav>
 
     <figure id="banner">
       {% block banner %}
-      <img src="{% static 'img/main_banner.jpg' %}" alt="main image"/>
       {% endblock banner %}
     </figure>
   </header>

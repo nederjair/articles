@@ -2,19 +2,20 @@
 {% load static %}
 
 {% block title %}{{ article.title }}{% endblock %}
-      {% block banner %}
-      <img src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/no_image.svg' %}{% endif %}" alt="main image"/>
-      {% endblock banner %}
-      {% block content %}
+{% block banner %}
+  <img class="banner_img" src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/main_banner.jpg' %}{% endif %}" alt="main image"/>
+{% endblock banner %}
+
+{% block content %}
   <h1>{{ article.title }}</h1>
-  <p class="date">
-    Created {{ article.created }} by Mendez
-  </p>
-  {{ article.description|linebreaks }}
-<ol>
-{% for section in sections %}
-  <h2><li>{{ section.title }}</li></h2>
-  <p>{{ section.bodytext }}</p>
-{% endfor %}
-</ol>
-      {% endblock content %}
+  <p class="date"> Created {{ article.created }} by Mendez </p>
+  <p> {{ article.description|linebreaks }}</p>
+  <ol>
+    {% for section in sections %}
+      <h2><li>{{ section.title }}</li></h2>
+      <p>{{ section.bodytext }}</p>
+      <p class="code">{{ section.code }}</p>
+      <img class="section_img" src="{% if section.image %}{{ section.image.url }}{% else %}{% static 'img/no_image.svg' %}{% endif %}" alt="main image"/>
+  {% endfor %}
+  </ol>
+{% endblock content %}

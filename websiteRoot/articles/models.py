@@ -8,8 +8,6 @@ class Section(models.Model):
     bodytext = models.TextField()
     code = models.TextField()
     image = models.ImageField(upload_to='sections/%Y/%m/%d', blank=True)
-    img_height = models.IntegerField(default=100)
-    img_width = models.IntegerField(default=100)
 
     updated = models.DateTimeField(auto_now_add=True)
     created = models.DateTimeField(auto_now=True)
