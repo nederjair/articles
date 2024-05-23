@@ -2,33 +2,19 @@
 {% load static %}
 
 {% block title %}{{ article.title }}{% endblock %}
-    {% block navbar %}
-    <nav>
-      <ul>
-        <li><a href="{% url 'articles:article_list' %}">Back to tutorials</a></li>
-      </ul>
-    </nav>
-    {% endblock %}
-
-    {% block image %}
-    <figure>
-      <img src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/no_image.svg' %}{% endif %}" height="{{ article.img_height }}" width="{{ article.img_width }}" alt="main image"/>
-    </figure>
-    {% endblock %}
-
-{% block content %}
+      {% block banner %}
+      <img src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/no_image.svg' %}{% endif %}" alt="main image"/>
+      {% endblock banner %}
+      {% block content %}
   <h1>{{ article.title }}</h1>
   <p class="date">
     Created {{ article.created }} by Mendez
   </p>
   {{ article.description|linebreaks }}
-
 <ol>
-  
 {% for section in sections %}
   <h2><li>{{ section.title }}</li></h2>
   <p>{{ section.bodytext }}</p>
 {% endfor %}
-
 </ol>
-{% endblock %}
+      {% endblock content %}

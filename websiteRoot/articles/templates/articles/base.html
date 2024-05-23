@@ -2,22 +2,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>{% block title %}{% endblock %}</title>
+  <title>{% block title %}{% endblock title %}</title>
   <link href="{% static "css/articles.css" %}" rel="stylesheet">
   <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
 </head>
 <body>
-  <div id="main_container">
-  <header>
-    {% block navbar %}
-    {% endblock %}
-    {% block image %}
-    {% endblock %}
+
+<div id="main_container">
+  <header id="header">
+    <nav id="navbar">
+      <ul>
+        <li class="logo"><a href="{% url 'articles:article_list' %}"><img id="logo" src="{% static 'img/programming.png' %}"/></a></li>
+        <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
+        <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
+        <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
+      </ul>
+    </nav>
+
+    <figure id="banner">
+      {% block banner %}
+      <img src="{% static 'img/main_banner.jpg' %}" alt="main image"/>
+      {% endblock banner %}
+    </figure>
   </header>
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
-  </div>
+
+    <main id="main_content">
+      {% block content %}
+      {% endblock content %}
+    </main>
 </body>
+</div>
 </html>
