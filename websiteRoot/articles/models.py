@@ -5,8 +5,8 @@ class Section(models.Model):
 
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
-    bodytext = models.TextField()
-    code = models.TextField()
+    bodytext = models.TextField(blank=True)
+    code = models.TextField(blank=True)
     image = models.ImageField(upload_to='sections/%Y/%m/%d', blank=True)
 
     updated = models.DateTimeField(auto_now_add=True)
