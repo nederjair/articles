@@ -15,7 +15,9 @@
       <h2><li>{{ section.title }}</li></h2>
       <p>{{ section.bodytext }}</p>
       <p class="code">{{ section.code }}</p>
-      <img class="section_img" src="{% if section.image %}{{ section.image.url }}{% else %}{% static 'img/no_image.svg' %}{% endif %}" alt="main image"/>
+      {% if section.image %}
+      <img class="section_img" src="{{ section.image.url }}" alt="section image"/>
+      {% endif %}
   {% endfor %}
   </ol>
 {% endblock content %}

@@ -12,8 +12,8 @@
   <header id="header">
     <nav id="navbar">
       <ul>
-        <li class="logo"><a href="{% url 'articles:article_list' %}"><img id="logo" src="{% static 'img/programming.png' %}"/></a></li>
-        <li><a class="navbarlink" href="{% url 'articles:article_list' %}">Python Tutorials</a></li>
+{% block navbar %}
+{% endblock navbar %}
       </ul>
     </nav>
 

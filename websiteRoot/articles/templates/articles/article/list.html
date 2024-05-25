@@ -1,13 +1,21 @@
 {% extends "articles/base.html" %}
 {% load static %}
   
-{% block title %}Python RUDN{% endblock %}
+{% block title %}{% if category %}{{ category.name }}{% else %}Informatika RUDN{% endif %}{% endblock %}
 {% block banner %}
   <img class="banner_img" src="{% static 'img/main_banner.jpg' %}" alt="main image"/>
 {% endblock banner %}
 
+{% block navbar %}
+  <li class="logo"><a href="{% url "articles:article_list" %}"><img id="logo" src="{% static 'img/programming.png' %}"/></a></li>
+  {% for cat in categories %}
+ <li><a class="navbarlink" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+ {% endfor %} 
+{% endblock navbar %}
+
   {% block content %}
-    <h1>Python Tutorials</h1>
+{% if category %}
+    <h1>{{ category.name }}</h1>
       {% for article in articles %}
         <h2>
           <a class="articlelink" href="{{ article.get_absolute_url }}">
@@ -21,4 +29,8 @@
         <p>{{ article.description|truncatewords:30|linebreaks }}</p>
       {% endfor %}
       {% include "pagination.html" with page=articles %}
+{% else %}
+    <h1>Welcome to Informatika RUDN </h1>
+    <p> Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis. </p>
+{% endif %}
       {% endblock content %}
