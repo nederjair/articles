@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls', namespace='articles')),
-    path("__reload__/", include("django_browser_reload.urls")),
+    #path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 if settings.DEBUG:

@@ -4,6 +4,8 @@
 **lib64
 **db.sqlite3
 **__pycache__/
+**__init__.py
 **theme/
 **media/
+**migrations/
 pyvenv.cfg

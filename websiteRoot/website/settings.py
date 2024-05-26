@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-)gwd30^+w3t-mne+gix!7n@k8)@$363!4h7%m58f0t7+iaoy(#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['rudnailab.ru']
+CSRF_TRUSTED_ORIGINS = ['https://rudnailab.ru']
 
 # Application definition
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'tailwind',
     #'theme',
-    'django_browser_reload',
+    #'django_browser_reload',
 ]
 #TAILWIND_APP_NAME = 'theme'
 #INTERNAL_IPS = [
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "django_browser_reload.middleware.BrowserReloadMiddleware",
+    #"django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'website.urls'
