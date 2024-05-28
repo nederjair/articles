@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = ['https://rudnailab.ru']
 
 INSTALLED_APPS = [
     'articles.apps.ArticlesConfig',
+    'account.apps.AccountConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,9 @@ INSTALLED_APPS = [
 #INTERNAL_IPS = [
 #"127.0.0.1",
 #]
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

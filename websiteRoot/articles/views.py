@@ -3,7 +3,9 @@ from .models import Article, Category
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.postgres.search import SearchVector
 from .forms import SearchForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def article_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
@@ -25,6 +27,7 @@ def article_list(request, category_slug=None):
     return render(request, 'articles/article/list.html', {'category': category, 'categories': categories, 'articles': articles})
 
 
+@login_required
 def article_detail(request, year, month, day, article):
     article = get_object_or_404(Article, slug=article, created__year=year, created__month=month, created__day=day)
     sections = article.sections.all()

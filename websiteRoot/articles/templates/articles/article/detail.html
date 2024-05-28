@@ -14,7 +14,7 @@
     {% for section in sections %}
       <h2><li>{{ section.title }}</li></h2>
       <p>{{ section.bodytext }}</p>
-      <p class="code">{{ section.code }}</p>
+      <p class="code">{{ section.code|linebreaksbr }}</p>
       {% if section.image %}
       <img class="section_img" src="{{ section.image.url }}" alt="section image"/>
       {% endif %}

@@ -9,7 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'order', 'created', 'slug']
-    list_filter = ['created']
+    list_filter = ['category']
     search_fields = ['title', 'description']
     prepopulated_fields = {'slug': ('title',)}
     raw_id_fields = ['sections']
