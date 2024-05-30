@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% block title %}
+article {{ article.title }} {{ block.super }}
+{% endblock %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url "admin:index" %}">Home</a> &rsaquo;
+<a href="{% url "admin:articles_article_changelist" %}">Articles</a>
+&rsaquo;
+<a href="{% url "admin:articles_article_change" article.id %}">Article {{ order.id }}</a>
+&rsaquo; Detail
+</div>
+{% endblock %}
+{% block content %}
+<div class="module">
+<h1> Article id {{ article.id }}</h1>
+<table>
+<tr>
+<th>Created</th>
+<td>{{ article.created }}</td>
+</tr>
+<tr>
+<th>Article</th>
+<td>{{ article.title }}</td>
+</tr>
+<tr>
+<th>Order</th>
+<td>{{ article.order }}</td>
+</tr>
+</table>
+</div>
+<div class="module">
+  {% for section in sections %}
+  <h3>hello{{ section.title }} {{section.code}}</h3>
+  {% endfor %}
+  {% for section_order in section_orders %}
+{{ section_order.order }}
+  {% endfor %}
+</div>
+{% endblock content %}

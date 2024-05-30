@@ -1,10 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Article, Category
+from .models import Article, Category, Section, SectionOrder
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.postgres.search import SearchVector
 from .forms import SearchForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
+@staff_member_required
+def admin_article_detail(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    sections = article.sections.all()
+    section_orders = []
+    for section in sections:
+        section_orders.append(get_object_or_404(SectionOrder, article=article, section=section))
+    return render(request, 'admin/articles/article/detail.html', {'article': article, 'sections':sections, 'section_orders': section_orders})
 @login_required
 def article_list(request, category_slug=None):
     category = None

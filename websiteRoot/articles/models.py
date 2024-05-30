@@ -62,8 +62,8 @@ class Article(models.Model):
         return reverse('articles:article_detail', args=[self.created.year, self.created.month, self.created.day, self.slug])
 
 class SectionOrder(models.Model):
-    section = models.ForeignKey(Section, on_delete=models.CASCADE)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    section = models.ForeignKey(Section, related_name='section_order', on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, related_name='article_order', on_delete=models.CASCADE)
     order = models.IntegerField(default=0)
 
     def __str__(self):
