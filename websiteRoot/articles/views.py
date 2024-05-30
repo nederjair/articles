@@ -38,13 +38,16 @@ def article_list(request, category_slug=None):
 
 @login_required
 def article_detail(request, year, month, day, article):
+    categories = Category.objects.all()
     article = get_object_or_404(Article, slug=article, created__year=year, created__month=month, created__day=day)
     sections = article.sections.all()
     context = {'article': article,
                'sections': sections,
+               'categories': categories,
                }
     return render(request, 'articles/article/detail.html', context)
 
+@login_required
 def article_search(request):
     form = SearchForm()
     query = None

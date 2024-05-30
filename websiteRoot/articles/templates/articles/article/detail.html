@@ -6,6 +6,7 @@
   <img class="banner_img" src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/main_banner.jpg' %}{% endif %}" alt="main image"/>
 {% endblock banner %}
 
+
 {% block content %}
   <h1>{{ article.title }}</h1>
   <p class="date"> Created {{ article.created }} by Mendez </p>

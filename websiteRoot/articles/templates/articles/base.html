@@ -14,8 +14,14 @@
   <header id="header">
     <nav id="navbar">
       <ul>
+
 {% block navbar %}
+  <li class="logo"><a href="{% url "articles:article_list" %}"><img id="logo" src="{% static 'img/programming.png' %}"/></a></li>
+{% for cat in categories %}
+ <li><a class="navbarlink" href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+{% endfor %} 
 {% endblock navbar %}
+
       </ul>
     </nav>
 
