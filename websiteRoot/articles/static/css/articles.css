@@ -8,7 +8,7 @@ body{
   max-width: 100%;
 }
 .banner_img {
-  max-width: 50%;
+  max-width: 100%;
 }
 #logo {
   max-width: 70%;
@@ -95,4 +95,7 @@ h1{
   background-color: #A5D7E8;
   color: #0B2447;
   font-size: x-large;
+}
+.unformatted_list{
+  list-style-type: none;
 }

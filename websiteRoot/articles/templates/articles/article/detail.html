@@ -3,7 +3,7 @@
 
 {% block title %}{{ article.title }}{% endblock %}
 {% block banner %}
-  <img class="banner_img" src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/main_banner.jpg' %}{% endif %}" alt="main image"/>
+  <img class="banner_img" src="{% if article.image %}{{ article.image.url }}{% else %}{% static 'img/main_banner.svg' %}{% endif %}" alt="main image"/>
 {% endblock banner %}
 
 
@@ -11,14 +11,16 @@
   <h1>{{ article.title }}</h1>
   <p class="date"> Created {{ article.created }} by Mendez </p>
   <p> {{ article.description|linebreaks }}</p>
-  <ol>
-    {% for section in sections %}
-      <h2><li>{{ section.title }}</li></h2>
-      <p>{{ section.bodytext }}</p>
-      <p class="code">{{ section.code|linebreaksbr }}</p>
-      {% if section.image %}
-      <img class="section_img" src="{{ section.image.url }}" alt="section image"/>
+  <ul class="unformatted_list">
+    {% for section_info in sections_order %}
+      <h2><li>{{ section_info.order }}.{{ section_info.section.title }}</li></h2>
+      <p>{{ section_info.section.bodytext }}</p>
+      {% for subsection in section_info.section.subsections.all %}
+        <p class="code">{{ subsection.code|linebreaksbr }}</p>
+      {% if subsection.image %}
+      <img class="section_img" src="{{ subsection.image.url }}" alt="section image"/>
       {% endif %}
+      {% endfor %}
   {% endfor %}
-  </ol>
+  </ul>
 {% endblock content %}

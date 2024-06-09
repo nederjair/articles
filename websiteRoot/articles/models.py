@@ -20,8 +20,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('articles:article_list_by_category', args=[self.slug])
 
-class Section(models.Model):
-
+class Subsection(models.Model):
     title = models.CharField(max_length=250)
     slug = models.SlugField(max_length=250)
     bodytext = models.TextField(blank=True)
@@ -30,9 +29,29 @@ class Section(models.Model):
 
     updated = models.DateTimeField(auto_now_add=True)
     created = models.DateTimeField(auto_now=True)
+    showTitle = models.BooleanField(default=False)
+    def __str__(self):
+        return self.title
+
+class Section(models.Model):
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=250)
+    bodytext = models.TextField(blank=True)
+    subsections = models.ManyToManyField(Subsection, through='SubsectionOrder')
+
+    updated = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
+
+class SubsectionOrder(models.Model):
+    section = models.ForeignKey(Section, related_name='subsection_order', on_delete=models.CASCADE)
+    subsection = models.ForeignKey(Subsection, related_name='subsection_order', on_delete=models.CASCADE)
+    order = models.IntegerField(default=0)
+
+    def __str__(self):
+        return '{}_{}'.format(self.section.__str__(), self.subsection.__str__())
 
 class Article(models.Model):
     category = models.ForeignKey(Category, related_name='articles', on_delete=models.CASCADE)
@@ -63,10 +82,9 @@ class Article(models.Model):
 
 class SectionOrder(models.Model):
     section = models.ForeignKey(Section, related_name='section_order', on_delete=models.CASCADE)
-    article = models.ForeignKey(Article, related_name='article_order', on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, related_name='section_order', on_delete=models.CASCADE)
     order = models.IntegerField(default=0)
 
     def __str__(self):
         return '{}_{}'.format(self.article.__str__(), self.section.__str__())
-
 

@@ -40,9 +40,15 @@ def article_list(request, category_slug=None):
 def article_detail(request, year, month, day, article):
     categories = Category.objects.all()
     article = get_object_or_404(Article, slug=article, created__year=year, created__month=month, created__day=day)
-    sections = article.sections.all()
+    sections_order = SectionOrder.objects.filter(article=article).order_by('order')
+    #sections = sections.order_by('section_order__order')
+    #sections_info = []
+    #for section in sections:
+    #    sectionorder = get_object_or_404(SectionOrder, article=article, section=section)
+    #    sections_info.append([sectionorder, section])
     context = {'article': article,
-               'sections': sections,
+               #'sections': sections_info,
+               'sections_order': sections_order,
                'categories': categories,
                }
     return render(request, 'articles/article/detail.html', context)
